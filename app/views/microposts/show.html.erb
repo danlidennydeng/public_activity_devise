@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  
+  <%= @micropost.content %> by <%= @micropost.user.email %>
+</p>
+
+<p>
+  
+  
+</p>
+
+<ol type="1">
+  <% @micropost.comments.each do |comment|%>
+	<li>
+		<%= comment.content %> by <%= comment.user.email %>
+	</li>
+	
+	<% end %>	
+</ol>	
+<%= link_to 'write a comment?', :controller => 'comments', :action => 'new', :id => @micropost.id %></br>
+
+<%= link_to 'Edit', edit_micropost_path(@micropost) %> |
+<%= link_to 'Back', microposts_path %>
