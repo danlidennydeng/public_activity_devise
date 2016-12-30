@@ -1,11 +1,9 @@
 class Comment < ApplicationRecord
 
   
-  # include PublicActivity::Model
-  # tracked owner: :commenter, recipient: :commentee
-
-  # belongs_to :commenter, :class_name => "User"
-  # belongs_to :commentee, :class_name => "User"
+  include PublicActivity::Common
+  #tracked recipient: ->(controller, model) { model && model.user }
+ 
 
   belongs_to :user
   belongs_to :micropost

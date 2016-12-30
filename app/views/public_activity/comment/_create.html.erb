@@ -1,1 +1,3 @@
-added comment to <%= link_to activity.trackable.recipient.email, user_path(activity.trackable) %>
+added comment to <%= link_to activity.trackable.micropost.content, comment_path(activity.trackable) %> by <%= activity.recipient.email %>
+
+<!--cannot link to user_path since there is no user model.-->

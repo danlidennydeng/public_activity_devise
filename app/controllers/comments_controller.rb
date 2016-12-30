@@ -28,6 +28,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+
+        @comment.create_activity :create, owner: current_user, recipient: @comment.micropost.user
+        #recipient is the author of the micropost which current_user comments on.
+
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
@@ -42,6 +46,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
+
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
