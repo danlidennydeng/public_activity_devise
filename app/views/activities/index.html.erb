@@ -1,5 +1,10 @@
 <h1>Activities</h1>
+
+<%= @num %>
+
 <% @activities.each do |activity| %>
+
+
   <div class="activity">
     <strong><%= activity.owner ? activity.owner.email : 'Guest' %></strong>
     <%= render_activity activity %>

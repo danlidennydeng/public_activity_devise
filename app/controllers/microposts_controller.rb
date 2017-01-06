@@ -13,6 +13,7 @@ class MicropostsController < ApplicationController
   # GET /microposts/1
   # GET /microposts/1.json
   def show
+    @micropost.create_activity :read, owner: current_user, recipient: @micropost.user
   end
 
   # GET /microposts/new
@@ -31,7 +32,7 @@ class MicropostsController < ApplicationController
 
     respond_to do |format|
       if @micropost.save
-        @micropost.create_activity :create, owner: current_user
+        @micropost.create_activity :create, owner: current_user 
 
         format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
         format.json { render :show, status: :created, location: @micropost }
@@ -48,7 +49,7 @@ class MicropostsController < ApplicationController
     respond_to do |format|
       if @micropost.update(micropost_params)
         
-        @micropost.create_activity :update, owner: current_user
+        @micropost.create_activity :update, owner: current_user, recipient: @micropost.user
 
         format.html { redirect_to @micropost, notice: 'Micropost was successfully updated.' }
         format.json { render :show, status: :ok, location: @micropost }
