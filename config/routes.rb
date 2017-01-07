@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  resources :people do
+    resources :interactions, only: [:new, :create, :edit, :update]
+  end
+
+  resources :businesses do
+    resources :interactions, only: [:new, :create, :edit, :update]
+  end
+
   #get 'activities/index'
   
   resources :activities
