@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Interactions</h3>
+<div class="well">
+  <%= link_to "New Interaction", new_product_interaction_path(@product), class: "btn btn-primary" %>
+</div>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Created On</th>
+      <td>&nbsp;</td>
+    </tr>
+  </thead>
+  <% if @product.interactions.count > 0 %>
+    <% @product.interactions.each do |interaction| %>
+      <tr>
+        <td><%= interaction.description %></td>
+        <td><%= time_ago_in_words interaction.created_at %> ago</td>
+        <td><%= link_to "Edit", edit_product_interaction_path(@product, interaction), class: "btn btn-default" %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="2">No interactions found for this product.  Click the 'New Interaction' button to create a new interaction.</td>
+    </tr>
+  <% end %>
+</table>
+
+<%#= link_to 'Edit', edit_product_path(@product) %> |
+<%#= link_to 'Back', products_path %>

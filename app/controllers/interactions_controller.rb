@@ -40,9 +40,13 @@ class InteractionsController < ApplicationController
   	if params[:person_id]
    	  id = params[:person_id]
       Person.find(params[:person_id])
-    else
+
+     elsif params[:business_id]
    	  id = params[:business_id]
-      Business.find(params[:business_id]) 
+      Business.find(params[:business_id])
+    else
+   	  id = params[:product_id]
+      Product.find(params[:product_id])       
     end   	
   end
 
@@ -51,9 +55,10 @@ class InteractionsController < ApplicationController
     if Person === context
       person_path(context)
 
-    else
+    elsif Business === context
       business_path(context)
-
+    else
+  	  product_path(context)
     end
   	
   end

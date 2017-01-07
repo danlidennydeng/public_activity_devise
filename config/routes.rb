@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :products
   resources :people do
     resources :interactions, only: [:new, :create, :edit, :update]
   end
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
     resources :interactions, only: [:new, :create, :edit, :update]
   end
 
+  resources :products do
+    resources :interactions, only: [:new, :create, :edit, :update]
+  end
   #get 'activities/index'
   
   resources :activities
