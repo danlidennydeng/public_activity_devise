@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+
+  #resources :users, only: [:show]
+
+  resources :votes, only: [:create]
   
+  resources :polls
+
   resources :products
+
   resources :people do
     resources :interactions, only: [:new, :create, :edit, :update]
   end

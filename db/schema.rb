@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107035934) do
+ActiveRecord::Schema.define(version: 20170108144330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,12 @@ ActiveRecord::Schema.define(version: 20170107035934) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "polls", force: :cascade do |t|
+    t.text     "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -94,7 +100,29 @@ ActiveRecord::Schema.define(version: 20170107035934) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "vote_options", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "poll_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "votes_count", default: 0, null: false
+    t.index ["poll_id"], name: "index_vote_options_on_poll_id", using: :btree
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "vote_option_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
+    t.index ["vote_option_id", "user_id"], name: "index_votes_on_vote_option_id_and_user_id", unique: true, using: :btree
+    t.index ["vote_option_id"], name: "index_votes_on_vote_option_id", using: :btree
+  end
+
   add_foreign_key "comments", "microposts"
   add_foreign_key "comments", "users"
   add_foreign_key "microposts", "users"
+  add_foreign_key "vote_options", "polls"
+  add_foreign_key "votes", "users"
+  add_foreign_key "votes", "vote_options"
 end
