@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :places
+
   #resources :users, only: [:show]
 
   resources :votes, only: [:create]

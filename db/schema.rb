@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108144330) do
+ActiveRecord::Schema.define(version: 20170112225400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20170108144330) do
     t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
     t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "city"
+    t.string   "street"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_addresses_on_place_id", using: :btree
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -67,6 +76,12 @@ ActiveRecord::Schema.define(version: 20170108144330) do
   create_table "people", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -119,6 +134,7 @@ ActiveRecord::Schema.define(version: 20170108144330) do
     t.index ["vote_option_id"], name: "index_votes_on_vote_option_id", using: :btree
   end
 
+  add_foreign_key "addresses", "places"
   add_foreign_key "comments", "microposts"
   add_foreign_key "comments", "users"
   add_foreign_key "microposts", "users"
