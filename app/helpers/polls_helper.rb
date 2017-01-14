@@ -3,7 +3,7 @@ module PollsHelper
     content_tag :div, class: 'progress' do
       content_tag :div, class: 'progress-bar',
                   style: "width: #{option.poll.normalized_votes_for(option)}%" do
-        "#{option.votes.count}"
+        "#{option.poll.normalized_votes_for(option).round}%"
       end
     end
   end
