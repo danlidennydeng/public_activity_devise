@@ -2,7 +2,7 @@
 
 <p>
   
-  <%= @micropost.content %> by <%= @micropost.user.email %>
+  <%= simple_format(@micropost.content) %> by <%= @micropost.user.email %>
 </p>
 
 <p>
