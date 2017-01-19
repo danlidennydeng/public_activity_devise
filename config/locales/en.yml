@@ -21,3 +21,16 @@
 
 en:
   hello: "Hello world"
+  he: "闪光银的镜架"
+  
+  activerecord:
+    attributes:
+      micropost:
+        content: "content"
+
+  forms:
+    messages:
+      success: "Operation succeeded!"
+    buttons:
+      edit: "Edit"
+      submit: "Submit"    
