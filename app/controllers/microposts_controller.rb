@@ -34,7 +34,7 @@ class MicropostsController < ApplicationController
       if @micropost.save
         @micropost.create_activity :create, owner: current_user 
 
-        format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
+        format.html { redirect_to @micropost }
         format.json { render :show, status: :created, location: @micropost }
       else
         format.html { render :new }
