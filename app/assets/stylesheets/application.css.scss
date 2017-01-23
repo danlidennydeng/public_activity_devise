@@ -12,10 +12,16 @@
  *
  *= require_tree .
  *= require_self
+ *= require qr_code_helper
  */
+
+
+
 
 @import 'bootstrap';
 @import 'bootstrap/theme';
+
+
 
 body {
 	background-color: gray;
