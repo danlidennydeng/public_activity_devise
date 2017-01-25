@@ -20,3 +20,5 @@
 //= require cocoon
 
 //= require jquery.validate
+
+//= require global

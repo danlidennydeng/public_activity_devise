@@ -110,6 +110,8 @@ zh:
       unlocked: "您的帐号已成功解锁，您现在已登录."
   errors:
     messages:
+      weak_password: "不够强呀！最强是４分，它只得了%{score}分, 它必须得 %{min_password_score}分才行呀！" 
+       
       already_confirmed: "已经确认，请重新登录."
       confirmation_period_expired: "必须在 %{period} 以内确认，请重新申请"
       expired: "您已过期，请重新申请"
