@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
+    #@comment.create_activity :read, owner: current_user, recipient: @comment.user
   end
 
   # GET /comments/new
@@ -29,7 +30,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
 
-        @comment.create_activity :create, owner: current_user, recipient: @comment.micropost.user
+        #@comment.create_activity :create, owner: current_user, recipient: @comment.micropost.user
         #recipient is the author of the micropost which current_user comments on.
 
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }

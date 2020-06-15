@@ -14,7 +14,7 @@ module PublicActivityDevise
 
     I18n.available_locales = [:en, :zh]
 
-	config.time_zone = 'Beijing' 
+	  config.time_zone = 'Beijing' 
     config.i18n.default_locale = :zh 
 
   end

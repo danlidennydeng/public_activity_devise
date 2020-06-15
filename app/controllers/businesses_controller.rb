@@ -1,5 +1,5 @@
 class BusinessesController < ApplicationController
-  
+
   def index
     @business = Business.all
   end
@@ -29,9 +29,8 @@ class BusinessesController < ApplicationController
 
     if @business.update_attributes(business_params)
       redirect_to businesses_path, notice: "The business has been updated."
-
     end
-  end  
+  end
 
   def destroy
     @business = Business.find(params[:id])
@@ -42,7 +41,7 @@ class BusinessesController < ApplicationController
 
   def business_params
     params.require(:business).permit!
-    
+
   end
 
 end

@@ -1,9 +1,14 @@
 class MicropostsController < ApplicationController
-  
+
   #skip_before_filter :authenticate_user!
 
   before_action :set_micropost, only: [:show, :edit, :update, :destroy]
 
+  # before_action do
+  #   if request.format == Mime::ALL
+  #     request.format = request.xhr? ? :js : :html
+  #   end
+  # end
   # GET /microposts
   # GET /microposts.json
   def index
@@ -32,7 +37,7 @@ class MicropostsController < ApplicationController
 
     respond_to do |format|
       if @micropost.save
-        @micropost.create_activity :create, owner: current_user 
+        @micropost.create_activity :create, owner: current_user
 
         format.html { redirect_to @micropost }
         format.json { render :show, status: :created, location: @micropost }
@@ -48,7 +53,7 @@ class MicropostsController < ApplicationController
   def update
     respond_to do |format|
       if @micropost.update(micropost_params)
-        
+
         @micropost.create_activity :update, owner: current_user, recipient: @micropost.user
 
         format.html { redirect_to @micropost, notice: 'Micropost was successfully updated.' }
@@ -65,8 +70,8 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     respond_to do |format|
-      format.html { redirect_to microposts_url, notice: 'Micropost was successfully destroyed.' }
-      format.json { head :no_content }
+      #format.html { redirect_to microposts_url, notice: 'Micropost was successfully destroyed.' }
+      #@format.json { head :no_content }
     end
   end
 

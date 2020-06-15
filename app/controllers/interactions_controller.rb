@@ -9,7 +9,7 @@ class InteractionsController < ApplicationController
   	@interaction = @context.interactions.new(interaction_params)
 
   	if @interaction.save
-   	  redirect_to context_url(context), notice: "The interaction has been created"  
+   	  redirect_to context_url(context), notice: "The interaction has been created"
     end
   end
 
@@ -27,7 +27,16 @@ class InteractionsController < ApplicationController
 
   	if @interaction.update_attributes(interaction_params)
   		redirect_to context_url(context), notice: "The interaction has been updated!"
-  	end	
+  	end
+  end
+
+  def destroy
+    @context = context
+  	@interaction = @context.interactions.find(params[:id])
+
+    @interaction.destroy
+    redirect_to context_url(context), notice: "The interaction has been deleted!"
+
   end
 
   private
@@ -46,8 +55,8 @@ class InteractionsController < ApplicationController
       Business.find(params[:business_id])
     else
    	  id = params[:product_id]
-      Product.find(params[:product_id])       
-    end   	
+      Product.find(params[:product_id])
+    end
   end
 
   def context_url(context)
@@ -60,7 +69,7 @@ class InteractionsController < ApplicationController
     else
   	  product_path(context)
     end
-  	
+
   end
 
 end

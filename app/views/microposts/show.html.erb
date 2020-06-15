@@ -1,23 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  
-  <%= simple_format(@micropost.content) %> by <%= @micropost.user.email %>, 发表于<%= time_ago_in_words(@micropost.created_at) %>前
+
+  <%= simple_format(@micropost.content) %> <%= @micropost.content.length %>个字 by <%= @micropost.user.email %>, 发表于<%= time_ago_in_words(@micropost.created_at) %>前
 </p>
 
 <p>
-  
-  
 </p>
 
 <ol type="1">
   <% @micropost.comments.each do |comment|%>
 	<li>
-		<%= comment.content %> by <%= comment.user.email %>
+		<%= comment.content %>,  <%= comment.content.length %> by <%= comment.user.email %>
 	</li>
-	
-	<% end %>	
-</ol>	
+
+	<% end %>
+</ol>
 <%= link_to 'write a comment?', :controller => 'comments', :action => 'new', :id => @micropost.id %></br>
 
 <%= link_to 'Edit', edit_micropost_path(@micropost) %> |

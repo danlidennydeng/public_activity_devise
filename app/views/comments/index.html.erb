@@ -15,7 +15,7 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.content %></td>
+        <td><%#= comment.content %></td>
         <td><%= comment.user %></td>
         <td><%= comment.micropost %></td>
         <td><%= link_to 'Show', comment %></td>

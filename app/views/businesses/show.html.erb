@@ -10,6 +10,7 @@
       <th>Description</th>
       <th>Created On</th>
       <th>&nbsp;</th>
+        <th>&nbsp;</th>
     </tr>
   </thead>
   <% if @business.interactions.count > 0 %>
@@ -18,6 +19,7 @@
         <td><%= interaction.description %></td>
         <td><%= time_ago_in_words interaction.created_at %> ago</td>
         <td><%= link_to "Edit", edit_business_interaction_path(@business, interaction), class:"btn btn-default" %></td>
+        <td><%= link_to 'Destroy', business_interaction_path(@business, interaction), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   <% else %>
